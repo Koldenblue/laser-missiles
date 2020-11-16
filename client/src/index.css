@@ -1,7 +1,12 @@
+body {
+  overflow: hidden;
+}
+
 .zoom-squares {
   border-color: chartreuse;
   border-width: 5px;
   border-style: solid;
+  border-radius: 1000px;
 }
 
 .loginSignupContainer {
