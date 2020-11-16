@@ -8,6 +8,7 @@ import axios from 'axios';
 import Home from './components/Home';
 import LavaContainer from './components/LavaContainer';
 import Landscape from './components/Landscape';
+import ZoomSquare from './components/ZoomSquare';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/'>
+            <ZoomSquare />
             <LavaContainer />
             <Landscape />
           </Route>

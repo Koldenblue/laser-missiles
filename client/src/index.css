@@ -1,3 +1,9 @@
+.zoom-squares {
+  border-color: green;
+  border-width: 5px;
+  border-style: solid;
+}
+
 .loginSignupContainer {
   margin-top: 2em;
   position: relative;
