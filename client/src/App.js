@@ -31,7 +31,7 @@ function App() {
           <Route exact path='/'>
             <ZoomSquare />
             <LavaContainer />
-            <Landscape />
+            {/* <Landscape /> */}
           </Route>
 
           <Route exact path='/home'>

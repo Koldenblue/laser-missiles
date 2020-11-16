@@ -118,38 +118,6 @@ export default function ZoomSquare() {
     setLeft(xPos);
   }
 
-  // opacity doesn't work, because the inner elements inherit the opacity of the outer elements
-  // const laser = () => {
-  //   setOpacityA(circleOpacity);
-  //   setTimeout(() => {
-  //     setOpacityA(0);
-  //     setOpacity0(circleOpacity);
-  //     setTimeout(() => {
-  //       setOpacity0(0);
-  //       setOpacity1(circleOpacity);
-  //       setTimeout(() => {
-  //         setOpacity1(0)
-  //         setOpacity2(circleOpacity);
-  //         setTimeout(() => {
-  //           setOpacity2(0);
-  //           setOpacity3(circleOpacity);
-  //           setTimeout(() => {
-  //             setOpacity3(0);
-  //             setOpacity4(circleOpacity);
-  //             setTimeout(() => {
-  //               setOpacity4(0);
-  //               setOpacity(circleOpacity);
-  //               setTimeout(() => {
-  //                 setOpacity(0)
-  //               },500)
-  //             },500)
-  //           },500)
-  //         },500)
-  //       },500)
-  //     },500)
-  //   }, 500)
-  // }
-
   const laser = () => {
     setTimeout(() => {
       setColorA('red');
@@ -207,3 +175,39 @@ export default function ZoomSquare() {
       </div>
     </section>)
 }
+
+
+
+
+
+  // opacity doesn't work, because the inner elements inherit the opacity of the outer elements
+  // const laser = () => {
+  //   setOpacityA(circleOpacity);
+  //   setTimeout(() => {
+  //     setOpacityA(0);
+  //     setOpacity0(circleOpacity);
+  //     setTimeout(() => {
+  //       setOpacity0(0);
+  //       setOpacity1(circleOpacity);
+  //       setTimeout(() => {
+  //         setOpacity1(0)
+  //         setOpacity2(circleOpacity);
+  //         setTimeout(() => {
+  //           setOpacity2(0);
+  //           setOpacity3(circleOpacity);
+  //           setTimeout(() => {
+  //             setOpacity3(0);
+  //             setOpacity4(circleOpacity);
+  //             setTimeout(() => {
+  //               setOpacity4(0);
+  //               setOpacity(circleOpacity);
+  //               setTimeout(() => {
+  //                 setOpacity(0)
+  //               },500)
+  //             },500)
+  //           },500)
+  //         },500)
+  //       },500)
+  //     },500)
+  //   }, 500)
+  // }

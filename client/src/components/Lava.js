@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useSpring, useSprings, animated} from 'react-spring';
 
 function Lava(props) {
+  let startY = 0;
+  let startX = 250;
+  let endY = 1000;
 
+  useEffect(() => {
+
+  },[])
   let anim = useSpring({
-    opacity: 1,
     borderColor: props.color,
-    from: {opacity: 0,  borderColor: "chartreuse"},
+    top: endY,
+    from: {top: startY},
     config: {friction: 500},
-    background: 'rgb(255,255,255)',
+    background: 'rgba(255,255,255, 0.5)',
     // background: 'radial-gradient(circle, rgba(255,255,255,.5) 60%, rgba(46,139,87,.5) 100%)',
     borderWidth: '1px',
     borderStyle: 'dashed',
@@ -17,9 +23,7 @@ function Lava(props) {
     width: `0px`,
     borderRadius: '1000px',
     position: 'absolute',
-    top: '40%',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    left: startX,
   })
  
   return (
