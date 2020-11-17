@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fireLaser, fireLaserTwo, selectFiring, selectFiringTwo } from '../redux/laserSlice';
 
 export default function Laser() {
+  // style properties that can be dynamically set
   const bg = 'rgb(98, 168, 113)';
-  const squareRef = React.createRef();
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -19,9 +21,10 @@ export default function Laser() {
   const [color3, setColor3] = useState(bg);
   const [color4, setColor4] = useState(bg);
   const [color5, setColor5] = useState(bg);
-  const laserSpeed = 75;
-  const transitionSpeed = 0.075
+  const laserSpeed = 75;    // speed(ms) of setTimeout for changing laser colors
+  const transitionSpeed = laserSpeed / 1000;   // speed of CSS transition
 
+  // for calculating the concentric circles
   const width = 64 * 7;
   const height = 64 * 7;
   const squareDiff = 63;
@@ -33,7 +36,10 @@ export default function Laser() {
   const length0 = length1 - squareDiff;
   const lengthA = length0 - squareDiff;
   const centerCorrection = 4;
-  // const circleOpacity = 1;
+
+  // is firing is changed to true when a target div is clicked.
+  const isFiring = useSelector(selectFiring)
+  const isFiringTwo = useSelector(selectFiringTwo);
 
   let styles = {
     section: {
@@ -149,6 +155,14 @@ export default function Laser() {
       }, laserSpeed)
     }, laserSpeed)
   }
+
+  useEffect(() => {
+    if (isFiring || isFiringTwo) {
+      laser();
+    }
+  }, [isFiring, isFiringTwo])
+
+  // moves the concentric cercles div upon mouse move. Should be changed to use a ref for a document node
   useEffect(() => {
     document.addEventListener('mousemove', (event) => adjustPos(event))
 
@@ -158,7 +172,7 @@ export default function Laser() {
   }, [])
 
   return (
-    <section className='square-section zoom-squares' onClick={laser} ref={squareRef} style={styles.section}>
+    <section className='square-section zoom-squares' onClick={laser} style={styles.section}>
       <div style={styles.square4} className='zoom-squares square-4'>
         <div style={styles.square3} className='zoom-squares square-3'>
           <div style={styles.square2} className='zoom-squares square-2'>
@@ -177,6 +191,9 @@ export default function Laser() {
 
 
   // opacity doesn't work, because the inner elements inherit the opacity of the outer elements
+  
+  // const circleOpacity = 1;
+  
   // const laser = () => {
   //   setOpacityA(circleOpacity);
   //   setTimeout(() => {

@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react';
 import {useSpring, useSprings, animated} from 'react-spring';
+import { useSelector, useDispatch } from 'react-redux';
+import { fireLaser, fireLaserTwo, selectFiring, selectFiringTwo, selectClickedFirstClick, firstClick } from '../redux/laserSlice';
 
 function Lava(props) {
+  const dispatch = useDispatch();
+  const clickedFirstClick = useSelector(selectClickedFirstClick);
+  const firing = useSelector(selectFiring);
+  const firingTwo = useSelector(selectFiringTwo);
+
   let startY = 0;
   let startX = 250;
-  let endY = 1000;
+  let endY = 500;
 
   useEffect(() => {
 
@@ -26,9 +33,21 @@ function Lava(props) {
     left: startX,
   })
  
+  const explode = () => {
+    console.log('clicked')
+    if (!clickedFirstClick) {
+      dispatch(firstClick());
+      dispatch(fireLaser());
+    }
+    else {
+      dispatch(fireLaser());
+      dispatch(fireLaserTwo());
+    }
+  }
+
   return (
     <>
-      <animated.div className='lava' style={anim}></animated.div>
+      <animated.div onClick={explode} className='lava' style={anim}></animated.div>
     </>
   )
 }
