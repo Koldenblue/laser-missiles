@@ -1,11 +1,11 @@
-$square-color: orange;
+$body-color: rgb(98, 168, 113);
 
 body {
   // no scrollbars
   overflow: hidden;
 }
 .zoom-squares {
-  border-color: darkcyan;
+  border-color: $body-color;
   border-width: 5px;
   border-style: solid;
   border-radius: 1000px;
@@ -28,7 +28,7 @@ body {
 }
 
 body {
-  background-color: darkcyan;
+  background-color: $body-color;
 }
 
 .landbox {

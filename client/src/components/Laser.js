@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function ZoomSquare() {
-  const bg = 'darkcyan';
+export default function Laser() {
+  const bg = 'rgb(98, 168, 113)';
   const squareRef = React.createRef();
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
@@ -19,7 +19,8 @@ export default function ZoomSquare() {
   const [color3, setColor3] = useState(bg);
   const [color4, setColor4] = useState(bg);
   const [color5, setColor5] = useState(bg);
-  const laserSpeed = 50;
+  const laserSpeed = 75;
+  const transitionSpeed = 0.075
 
   const width = 64 * 7;
   const height = 64 * 7;
@@ -32,7 +33,7 @@ export default function ZoomSquare() {
   const length0 = length1 - squareDiff;
   const lengthA = length0 - squareDiff;
   const centerCorrection = 4;
-  const circleOpacity = 1;
+  // const circleOpacity = 1;
 
   let styles = {
     section: {
@@ -43,7 +44,7 @@ export default function ZoomSquare() {
       left: `${left - width / 2}px`,
       position: 'absolute',
       backgroundColor: color5,
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
     },
     square4: {
       opacity: opacity4,
@@ -51,7 +52,7 @@ export default function ZoomSquare() {
       height: `${height4}px`,
       top: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       left: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
 
       position: 'relative',
       backgroundColor: color4,
@@ -63,7 +64,7 @@ export default function ZoomSquare() {
       top: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       left: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       position: 'relative',
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
 
       backgroundColor: color3,
     },
@@ -73,7 +74,7 @@ export default function ZoomSquare() {
       height: `${length2}px`,
       top: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       left: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
 
       position: 'relative',
       backgroundColor: color2,
@@ -83,7 +84,7 @@ export default function ZoomSquare() {
       width: `${length1}px`,
       height: `${length1}px`,
       top: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
 
       left: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       position: 'relative',
@@ -96,7 +97,7 @@ export default function ZoomSquare() {
       top: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       left: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       position: 'relative',
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
       backgroundColor: color0,
     },
     squareA: {
@@ -105,7 +106,7 @@ export default function ZoomSquare() {
       height: `${lengthA}px`,
       top: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
       left: `${Math.floor(squareDiff / 2) - centerCorrection}px`,
-      transition: 'backgroundColor 0.5s',
+      transition: `background-color ${transitionSpeed}s`,
       position: 'relative',
       backgroundColor: colorA,
     }
@@ -119,36 +120,34 @@ export default function ZoomSquare() {
   }
 
   const laser = () => {
+    setColorA('red');
     setTimeout(() => {
-      setColorA('red');
-      setTimeout(() =>{
-        setColorA(bg);
-        setColor0('orange');
+      setColorA(bg);
+      setColor0('orange');
+      setTimeout(() => {
+        setColor1('yellow');
+        setColor0(bg);
         setTimeout(() => {
-          setColor1('yellow');
-          setColor0(bg);
+          setColor1(bg);
+          setColor2('green');
           setTimeout(() => {
-            setColor1(bg);
-            setColor2('green');
+            setColor2(bg);
+            setColor3('blue');
             setTimeout(() => {
-              setColor2(bg);
-              setColor3('blue');
+              setColor3(bg);
+              setColor4('indigo');
               setTimeout(() => {
-                setColor3(bg);
-                setColor4('indigo');
+                setColor4(bg);
+                setColor5('purple');
                 setTimeout(() => {
-                  setColor4(bg);
-                  setColor5('purple');
-                  setTimeout(() => {
-                    setColor5('darkcyan')
-                  },laserSpeed)
-                },laserSpeed)
-              },laserSpeed)
-            },laserSpeed)
-          },laserSpeed)
-        },laserSpeed)
-      },laserSpeed)
-    },laserSpeed)
+                  setColor5(bg)
+                }, laserSpeed)
+              }, laserSpeed)
+            }, laserSpeed)
+          }, laserSpeed)
+        }, laserSpeed)
+      }, laserSpeed)
+    }, laserSpeed)
   }
   useEffect(() => {
     document.addEventListener('mousemove', (event) => adjustPos(event))
@@ -175,9 +174,6 @@ export default function ZoomSquare() {
       </div>
     </section>)
 }
-
-
-
 
 
   // opacity doesn't work, because the inner elements inherit the opacity of the outer elements

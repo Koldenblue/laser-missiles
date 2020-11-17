@@ -3,7 +3,7 @@ body {
 }
 
 .zoom-squares {
-  border-color: darkcyan;
+  border-color: #62a871;
   border-width: 5px;
   border-style: solid;
   border-radius: 1000px;
@@ -26,7 +26,7 @@ body {
 }
 
 body {
-  background-color: darkcyan;
+  background-color: #62a871;
 }
 
 .landbox {
