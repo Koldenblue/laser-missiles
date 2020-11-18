@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fireLaser, fireLaserTwo, selectFiring, selectFiringTwo } from '../redux/laserSlice';
+import { selectBackground } from '../redux/backgroundSlice';
 
 export default function Laser() {
   // style properties that can be dynamically set
-  const bg = 'rgb(98, 168, 113)';
+  const bg = useSelector(selectBackground);
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -118,6 +119,7 @@ export default function Laser() {
     }
   }
 
+  // div follows cursor
   const adjustPos = (event) => {
     let xPos = event.clientX - (centerCorrection);
     let yPos = event.clientY - (centerCorrection);
@@ -125,6 +127,7 @@ export default function Laser() {
     setLeft(xPos);
   }
 
+  /** creates concentric colored circles centered at div at mouse location */
   const laser = () => {
     setColorA('red');
     setTimeout(() => {
@@ -156,6 +159,7 @@ export default function Laser() {
     }, laserSpeed)
   }
 
+  // these redux variables alternate between true and false, should be opposite
   useEffect(() => {
     if (isFiring || isFiringTwo) {
       laser();

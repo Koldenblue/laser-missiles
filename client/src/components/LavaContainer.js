@@ -5,7 +5,6 @@ export default function LavaContainer() {
   return(<> 
     <Lava 
       color='red'
-      padding='20'
     />
   </>)
 }
